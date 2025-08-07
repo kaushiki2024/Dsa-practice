@@ -39,3 +39,20 @@
 
 # debug information files
 *.dwo
+# === Custom for My DSA Repo ===
+
+# Editor folders
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backup files
+*~
+
+# Build folders
+build/
+cmake-build-*/
