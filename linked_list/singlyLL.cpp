@@ -8,6 +8,15 @@ class Node{
         this->data = data;
         this->next = NULL;
      }
+     ~Node(){
+        int value = this->data;
+        //memory free
+        if(this->next  != NULL){
+            delete next;
+            this->next=NULL;
+        }
+        cout<<"memory is free for node with data : "<<value<<endl;
+     }
 };
 void insertAtHead(Node* &head,int d){
     //new code create
@@ -43,7 +52,7 @@ void insertAtposition(Node* &tail,Node* &head,int position,int d){
         temp = temp->next;
         cnt++;
     }
-      //inserting at last positon
+      //inserting at last position
         if(temp->next == NULL){
             insertAtTail(tail,d);
             return;
@@ -55,20 +64,74 @@ void insertAtposition(Node* &tail,Node* &head,int position,int d){
         temp ->next = nodetoinsert;
       
 }
-int main(){
-    Node* node1= new Node(10);
+ void deleteNode(int position,Node* &head,Node* &tail){
+     //deleting first node
+     if(position==1){
+        Node* temp=head;
+        head=head->next;
+        //memory free node
+        temp->next=NULL;
+        delete temp;
+     }
+     else{
+        //deleting node at any position leaving first
+        Node* curr=head;
+        Node* prev=NULL;
+      
+        int cnt=1;
+        while(cnt < position){
+            prev=curr;
+            curr=curr->next;
+            cnt++;
+        }
+    
+        prev->next=curr->next;
+        if (curr->next == NULL) { //update tail when deleting last node
+            tail = prev;
+        }
+        curr->next=NULL;
+        delete curr;
+     }
+ }
+
+int main() {
+    int n;
+    cout << "Enter number of nodes you want to create: ";
+    cin >> n;
+
+    int value;
+    cout << "Enter value for node 1: ";
+    cin >> value;
+
+    // Create first node
+    Node* node1 = new Node(value);
+    Node* head = node1;
+    Node* tail = node1;
+
+    // Create remaining nodes
+    for (int i = 2; i <= n; i++) {
+        cout << "Enter value for node " << i << ": ";
+        cin >> value;
+        insertAtTail(tail, value);
+    }
+    //Node* node1= new Node(10);
     //cout<<node1->data<<endl;
     //cout<<node1->next<<endl;
-    Node* head= node1;
-    Node* tail=node1;
-    print(head);
-    insertAtTail(tail,12);
-    print(head);
+    //Node* head= node1;
+    //Node* tail=node1;
+    //print(head);
+    //insertAtTail(tail,12);
+    //print(head);
     insertAtTail(tail,15);
     print(head);
     insertAtposition(tail,head,3,17);
     print(head);
     cout<<"head = "<<head->data<<endl;
     cout<<"tail = "<<tail->data<<endl;
+    deleteNode(4,head,tail);
+    print(head);
+    cout<<"head = "<<head->data<<endl;
+    cout<<"tail = "<<tail->data<<endl;
+
     return 0; 
 }
