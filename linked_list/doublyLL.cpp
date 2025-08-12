@@ -123,18 +123,22 @@ void insertAtposition(Node* &tail,Node* &head,int position,int d){
 int main(){
     Node* head = NULL;
     Node* tail = NULL;
-    //cout<<getLength(head)<<endl;
-   
 
-    insertATHead(tail,head,11);
+    int n;
+    cout << "Enter number of nodes to create: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) {
+        int data;
+        cout << "Enter data for node " << i << ": ";
+        cin >> data;
+        insertAtTail(tail, head, data);
+       
+    }
     print(head);
-    insertAtTail(tail,head,16);
-    print(head);
-    insertAtposition(tail,head,3,12);
-    print(head);
-    insertAtposition(tail,head,4,14);
-    print(head);
-    deleteNode(5,head,tail);
+    cout << "head " << head->data << endl;
+    cout << "tail " << tail->data << endl;
+    deleteNode(4,head,tail);
     print(head);
     cout<<"head "<<head->data<<endl;
     cout<<"tail "<<tail->data<<endl;
