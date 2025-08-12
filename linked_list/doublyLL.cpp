@@ -10,7 +10,16 @@ class Node{
         this->data=d;
         this->prev = NULL;
         this->next = NULL;
-    }     
+    } 
+    //Destructor
+    ~Node(){
+        int val=this->data;
+        if(next!=NULL){
+            delete next;
+            next = NULL;
+        }
+        cout<<"memory free for node with data "<<val<<endl;
+    }    
 };
 void print(Node* head){
     Node* temp = head;
@@ -79,6 +88,38 @@ void insertAtposition(Node* &tail,Node* &head,int position,int d){
     
         
 }
+ void deleteNode(int position,Node* &head,Node* &tail){
+     //deleting first node
+     if(position==1){
+        Node* temp=head;
+        temp->next->prev = NULL;
+        head = temp->next;
+        temp->next = NULL;
+        //memory free node
+        delete temp;
+     }
+     else{
+        //deleting node at any position leaving first
+        Node* curr=head;
+        Node* prev=NULL;
+      
+        int cnt=1;
+        while(cnt < position){
+            prev=curr;
+            curr=curr->next;
+            cnt++;
+        }
+       
+        curr->prev = NULL;
+        prev->next = curr->next;
+       
+        if (curr->next == NULL) { //update tail when deleting last node
+            tail = prev;
+        }
+        curr->next = NULL;
+        delete curr;
+     }
+ }
 int main(){
     Node* head = NULL;
     Node* tail = NULL;
@@ -89,7 +130,13 @@ int main(){
     print(head);
     insertAtTail(tail,head,16);
     print(head);
-    insertAtposition(tail,head,2,12);
+    insertAtposition(tail,head,3,12);
     print(head);
+    insertAtposition(tail,head,4,14);
+    print(head);
+    deleteNode(5,head,tail);
+    print(head);
+    cout<<"head "<<head->data<<endl;
+    cout<<"tail "<<tail->data<<endl;
     return 0;
 }
