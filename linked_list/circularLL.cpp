@@ -15,7 +15,7 @@ class Node{
         if(this->next!=NULL){
             delete next;
             this->next=NULL;        }
-     cout<<"memory is free for node with data :  "<<this->data;
+     cout<<"memory is free for node with data :  "<<this->data<<endl;
      }
 };
 void insertNode(Node* &tail,int element,int d){
@@ -41,30 +41,64 @@ void insertNode(Node* &tail,int element,int d){
 }
 void print(Node* tail){
     Node* temp = tail;
+    if(tail == NULL){
+        cout<<"List is empty"<<endl;
+        return;
+    }
     do{
         cout<<tail->data<<" ";
         tail=tail->next;
     }while(tail!=temp);
     cout<<endl;
 }
+void deleteNode(Node* &tail,int value){
+    //empty list
+    if(tail == NULL){
+        cout<<"List is empty,please check again"<<endl;
+        return;
+    }
+    else{
+        //non-empty
+        //assuming that "value" is present in the LinkedList
+        Node* prev = tail;
+        Node* curr = prev->next;
+        while(curr->data!=value){
+            prev = curr;
+            curr = curr->next;
+        }
+        prev->next = curr->next;
+        //1 Node LL
+        if(curr == prev){
+            tail=NULL;
+        }
+        //>=2 Node LL
+        else if(tail == curr){
+            tail = prev;
+        }
+        curr->next = NULL;
+        delete curr;
+    }
+}
 
 int main(){
-    Node* tail=NULL;
-    insertNode(tail,5,3);
-    print(tail);
-    insertNode(tail,3,5);
-    print(tail);
-    insertNode(tail,5,7);
-    print(tail);
-    insertNode(tail,7,9);
-    print(tail);
-    insertNode(tail,9,11);
-    print(tail);
-    insertNode(tail,5,6);
-    print(tail);
-    insertNode(tail,3,4);
-    print(tail);
-    insertNode(tail,11,12);
+    Node* tail = NULL;
+    int data, element;
+
+    cout << "Enter first node data: ";
+    cin >> data;
+    insertNode(tail, 0, data); // first node
+
+    while (true) {
+        cout << "Enter element after which to insert (-1 to stop): ";
+        cin >> element;
+        if (element == -1) break;
+        cout << "Enter new node data: ";
+        cin >> data;
+        insertNode(tail, element, data);
+        print(tail);
+    }
+
+    deleteNode(tail,2);
     print(tail);
     return 0;
 
