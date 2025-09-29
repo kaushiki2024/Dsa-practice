@@ -9,7 +9,7 @@ Welcome to my personal repository where I sharpen my Data Structures and Algorit
 - 🚀 Total Problems Solved: **35+**
 - 💻 Language: **C++**
 - 📊 Platforms: [LeetCode](https://leetcode.com/u/Kaushiki365/)
-- 🧩 Categories: Arrays, Strings, DP, Two Pointers, Binary Search, and more
+- 🧩 Categories: Arrays, Strings, LinkedList,Stack, Two Pointers, Binary Search, and more
 
 ---
 
