@@ -6,7 +6,7 @@ Welcome to my personal repository where I sharpen my Data Structures and Algorit
 
 ## 📈 Quick Stats
 
-- 🚀 Total Problems Solved: **35+**
+- 🚀 Total Problems Solved: **50+**
 - 💻 Language: **C++**
 - 📊 Platforms: [LeetCode](https://leetcode.com/u/Kaushiki365/)
 - 🧩 Categories: Arrays, Strings, LinkedList,Stack, Two Pointers, Binary Search, and more
